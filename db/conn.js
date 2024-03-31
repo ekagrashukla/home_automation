@@ -1,16 +1,16 @@
-// require('dotenv').config()
-// const mongoose = require('mongoose')
+require('dotenv').config()
+const mongoose = require('mongoose')
 
 
-// const uri = process.env.uri
+const uri = process.env.uri
 
-// mongoose.connect(uri)
-// const db = mongoose.connection 
+mongoose.connect(uri)
+const db = mongoose.connection 
 
-// db.on('error',(err) => {
-//     console.log(err)
-// })
+db.on('error',(err) => {
+    console.log(err)
+})
 
-// db.once('open',()=> {
-//     console.log("Database Connection Established")
-// })
+db.once('open',()=> {
+    console.log("Database Connection Established")
+})
