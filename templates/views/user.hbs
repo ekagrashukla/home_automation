@@ -1,0 +1,99 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CutURL</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+
+body {
+  background: F44336;
+}
+* {
+  font-family: Raleway;
+}
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-light" style="background-color: #28a745;color:#fff">
+    <a class="navbar-brand" href="/" style="color:#fff">CutURL</a>
+        <span class="navbar-text">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <span><i class="fas fa-user-circle"></i>&nbsp;&nbsp;&nbsp;{{uname}}</span>
+        </button>
+        <button type="button" class="btn btn-light" onclick="window.location.href='/logout'">Logout</button>
+    </span>
+</nav>
+<br/><br/>
+    <p class="text-center">Enter any long URL Lets shorten it!</p>
+    <div class="form-group" style="width: 50%;margin-left: 25%;
+                               text-align: -webkit-center;
+                               ">
+        <form action="/short" method="post">
+            <input class="form-control" type="url" id="shortenURL" name = "longUrl" placeholder="Enter URL"><br/>
+            <button class="btn btn-success" type="submit" id="shorten">SHORTEN</button>
+        </form>
+    </div>
+    <div class="table-responsive">
+ <table class="table table-striped table-hover">
+  <thead style="color:white;background:#28a745;">
+    <tr>
+      <th scope="col">short url</th>
+      <th scope="col">full url</th>
+      <th scope="col">click count</th>
+      <th scope="col" data-toggle="tooltip" data-placement="top" title="Public URLs can be accessed by anyone, whereas private URLs can be accessed only by the creator of the link">Public</th>
+      <th scope="col">Created On</th>
+    </tr>
+  </thead>
+{{#each udata}}
+  <tbody>
+    <tr>
+      <td>cuturl.vercel.app/{{this.short_url}} <a href = '{{this.short_url}}' target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+      <td>{{splitUrl this.full_url}} <a href = '{{this.full_url}}' target="_blank"><i class="fas fa-external-link-alt"></i></a></td>
+      <td>{{this.click_count}}</td>
+      <td>{{this.public}}</td>
+      <td>{{this.createdAt}}</td>
+    </tr>
+  </tbody>
+  {{/each}}
+</table>
+
+   </div>
+
+   <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{uname}}'s profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Email : {{userinfo.email}}&nbsp;&nbsp;&nbsp;{{#if userinfo.isVerified}}<span class="badge badge-pill badge-success">Verified</span>{{else}}{{/if}}</p>
+        <p>Username : <input type="text" value={{uname}}></input></p>
+        <p>More info to be added...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
+    
+    
+    
