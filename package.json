@@ -4,7 +4,8 @@
   "description": "A URL Shortning API",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Ekagra Shukla",
   "license": "ISC",

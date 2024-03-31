@@ -26,9 +26,9 @@ hbs.registerHelper('splitUrl', function(url) {
     }
 })
 app.set("views", template_path);
-app.use(cookieParser());
+//app.use(cookieParser());
 
-app.use(morgan('dev'))
+//app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use('/', urlRoute)
