@@ -7,7 +7,7 @@ const fetch = require('node-fetch')
 
 router.get('/',async (req,res)=> {
     try {
-        const apiUrl = process.env.SECRET_URL
+        const apiUrl = 'myxenius.com/Prepaid_data_daily_logHelper/get_monthly_chart_data/658802020111';
         const response = await fetch(apiUrl);
         const data = await response.json();
         const len = data['grid'].length;
